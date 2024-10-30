@@ -139,7 +139,7 @@
                                       style="display:inline;">
                                     <button type="submit" class="btn-done">Done</button>
                                 </form>
-                                <a href="/editTask/{{ task['tid'] }}">
+                                <a href="/editTask/{{ task[0] }}">
                                     <button type="button" style="background-color: orange; color: white;">Edit</button>
                                 </a>
                                 <form action="/deleteTask/{{ task[0] }}" method="POST" style="display:inline;">

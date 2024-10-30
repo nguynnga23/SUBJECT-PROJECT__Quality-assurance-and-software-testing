@@ -21,6 +21,19 @@ def get_tasks():
     row = cursor.fetchone()
     return render_template("index.html", tasks=row)
 
+@app.route('/editTask/<int:id>', methods=['GET'])
+def edit_task(id):
+    task = cursor.execute("SELECT * FROM tasks WHERE tid = ?", (id,)).fetchone()
+    conn.commit()
+    return render_template('edit_task.html', task=task)
+@app.route('/updateTask', methods=['POST'])
+def update_task():
+    task_id = request.form.get('task_id')
+    updated_task = request.form.get('task')
+    if task_id and updated_task:
+        cursor.execute("UPDATE tasks SET task = ? WHERE tid = ?", (updated_task, task_id))
+        conn.commit()
+    return redirect('/')
 @app.route('/move-to-done/<int:id>/<string:task_name>', methods=['POST'])
 def move_to_done(id, task_name):
     cursor.execute("INSERT INTO done(task, task_id) VALUES(?,?)", (task_name,id))

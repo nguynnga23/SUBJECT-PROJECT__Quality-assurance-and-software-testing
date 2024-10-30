@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+    <style>
+        /* Optional styling to center the form */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .edit-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .edit-container h2 {
+            color: #333;
+        }
+        .edit-container input {
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .edit-container button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .edit-container button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit-container">
+        <h2>Edit Task</h2>
+        <form action="/updateTask" method="POST">
+            <input type="hidden" name="task_id" value="{{ task[0] }}">
+            <input type="text" name="task" value="{{ task[1] }}" placeholder="Edit Task">
+            <button type="submit">Update Task</button>
+        </form>
+    </div>
+</body>
+</html>
