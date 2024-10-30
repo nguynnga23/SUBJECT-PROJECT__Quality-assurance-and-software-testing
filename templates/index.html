@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Management</title>
+    <style>
+        /* Center the main container and add a card-like look */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Form styling */
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Button styles for done and delete actions */
+        .btn-done {
+            background-color: #28a745;
+        }
+
+        .btn-done:hover {
+            background-color: #218838;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        /* Align task text and buttons */
+        .task-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        /* Headings and paragraph styling */
+        h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* Separator line */
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <form action="/addTask" method="GET">
+        <input type="text" name="task" placeholder="Task">
+        <button type="submit">Add Task</button>
+    </form>
+
+    <div>
+        <h3>Todo Tasks</h3>
+        {% if tasks|length < 1 %}
+            <p>No tasks to display</p>
+        {% else %}
+            <table>
+                {% for task in tasks %}
+                    <tr>
+                        <td class="task-row">
+                            <span>{{ task[1] }}</span>
+                            <div class="task-actions">
+                                <form action="/move-to-done/{{ task[0] }}/{{ task[1] }}" method="POST"
+                                      style="display:inline;">
+                                    <button type="submit" class="btn-done">Done</button>
+                                </form>
+                                <a href="/editTask/{{ task['tid'] }}">
+                                    <button type="button" style="background-color: orange; color: white;">Edit</button>
+                                </a>
+                                <form action="/deleteTask/{{ task[0] }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <div>
+        <h3>Tasks Completed</h3>
+        {% if done|length < 1 %}
+            <p>No tasks completed</p>
+        {% else %}
+            <table>
+                {% for task in done %}
+                    <tr>
+                        <td class="task-row">
+                            <span>{{ task[1] }}</span>
+                            <div class="task-actions">
+                                <form action="/delete-completed/{{ task[0] }}" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        {% endif %}
+    </div>
+</div>
+</body>
+</html>
