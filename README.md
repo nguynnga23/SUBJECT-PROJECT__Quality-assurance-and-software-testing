@@ -1,6 +1,6 @@
 # Todo App
 
-This is a simple Todo application built using Python and SQLite. The application allows users to add, view, and delete tasks. The data is stored in a SQLite database and the front-end is rendered using the Jinja2 template engine.
+This is a simple Todo application built using Python and SQLite. The application allows users to add, view, update and delete tasks. The data is stored in a SQLite database and the front-end is rendered using the Jinja2 template engine.
 
 ## Requirements
 - Python 3.x
@@ -10,7 +10,7 @@ This is a simple Todo application built using Python and SQLite. The application
 ## Installation
 1. Clone the repository git clone 
 
-    `https://github.com/pj8912/todo-app.git`
+    `https://github.com/nguynnga23/PROJECT_Quality-assurance-and-software-testing.git`
 
 2. Install the required packages
     
