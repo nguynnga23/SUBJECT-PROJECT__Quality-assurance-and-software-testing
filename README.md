@@ -27,3 +27,13 @@ This is a simple Todo application built using Python and SQLite. The application
 2. Open `http://localhost:5000` in your web browser
 
 "# PROJECT_Quality-assurance-and-software-testing" 
+
+
+## Test selenium trên visual studio code
+B1. Thêm extention selenium trên chrome
+
+B2. Mở terminal
+
+    pip install selenium pytest
+    
+    pytest tests/test_addTask.py
