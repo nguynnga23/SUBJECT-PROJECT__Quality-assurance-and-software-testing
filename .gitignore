@@ -17,3 +17,5 @@ logs/
 
 #venv
 myenv/
+
+.idea/

@@ -6,14 +6,12 @@ app = Flask(__name__)
 conn = sqlite3.connect('todo.db', check_same_thread=False)
 cursor = conn.cursor()
 
-
 @app.route('/addTask', methods=['GET'])
 def add_task():
     task = request.args.get('task')
     cursor.execute("INSERT INTO tasks(task) VALUES(?)", (task,))
     conn.commit()
     return redirect('/')
-
 
 @app.route('/getTasks', methods=['GET'])
 def get_tasks():
@@ -47,13 +45,11 @@ def deleteTask(id):
     conn.commit()
     return redirect('/')
 
-
 @app.route('/delete-completed/<int:id>', methods=['POST'])
 def deleteCompletedTask(id):
     cursor.execute("DELETE FROM done WHERE did=?", (id,))
     conn.commit()
     return redirect('/')
-
 
 @app.route('/')
 def home():
@@ -64,7 +60,6 @@ def home():
     cursor.execute("SELECT * FROM done")
     row2 = cursor.fetchall()
     return render_template('index.html', tasks=row, done=row2)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
