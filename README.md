@@ -28,7 +28,7 @@ This is a simple Todo application built using Python and SQLite. The application
 3. Run tests
 - Run Unit Tests (unittest)
 
-    `python -m unittest -v tests/test_app.py`
+    `python -m unittest -v tests/test_unit.py`
 - Run Integration Tests (pytest)
 
     `python -m pytest -v tests/test_integration.py`
