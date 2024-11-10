@@ -22,8 +22,21 @@ This is a simple Todo application built using Python and SQLite. The application
 
 ## Usage
 1. Start the development server
-    python app.py
+    `python app.py`
 
 2. Open `http://localhost:5000` in your web browser
+3. Run tests
+- Run Unit Tests (unittest)
 
-"# PROJECT_Quality-assurance-and-software-testing" 
+    `python -m unittest -v tests/test_unit.py`
+- Run Integration Tests (pytest)
+
+    `python -m pytest -v tests/test_integration.py`
+- Run Functional Tests (selenium)
+
+   ....
+- Run Acceptance Tests (behave)
+
+    `cd .\tests\features\`
+
+    `behave`
